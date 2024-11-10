@@ -1,3 +1,5 @@
+# Mesajbot ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 import discord
 
 import random
@@ -10,71 +12,75 @@ intents = discord.Intents.default()
 
 intents.message_content = True
 
-bot = commands.Bot(command_prefix='$', intents=intents)
+bot = commands.Bot(command_prefix = "$",intents = intents)
 
 @bot.event
 async def on_ready():
     print(f"{bot.user} Açıldı.")
 
-@bot.event
-async def on_message(message):
-    cleaned_content = message.content.lower()
-    if message.author == bot.user:
-        return
-    async def merhaba(ctx):
-        await ctx.send("Sanada merhaba.")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def nasilsin(ctx):
-        await ctx.send("iyiyim, sorduğun için teşekkür ederim.")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def adin(ctx):
-        await ctx.send("Benim Adım Mesajbot.")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def ismin(ctx):
-        await ctx.send("Benim ismim Mesajbot.")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def nerelisin(ctx):
-        await ctx.send("Ben Discord'a aidim.")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def dinin(ctx):
-        await ctx.send("Ben bir yapay zeka olduğum için hergangi bir dinim yok.")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def tesekkür(ctx):
-        await ctx.send("Rica ederim her zaman yanındayım bir sorun olduğunda sormaktan çekinme.")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def parola(ctx):
-        await ctx.send(Parola(25))
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def offf(ctx):
-        await ctx.send("Belki Desen Makinesi sıkıntını giderebilir: https://hub.kodland.org/en/project/284214")
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def oyun(ctx):
-        await ctx.send(Oyun())
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
-    async def emoji(ctx):
-        await ctx.send(Surat())
-        begenme = random.randint(1,2)
-        if begenme == 1:
-            await message.add_reaction("👍")
+@bot.command()
+async def merhaba(ctx):
+    await ctx.send(f"Sanada merhaba.")
+
+@bot.command()
+async def nasılsın(ctx):
+    await ctx.send(f"iyiyim, sorduğun için teşekkür ederim.")
+
+@bot.command()
+async def adın(ctx):
+    await ctx.send(f"Benim Adım Mesajbot.")
+
+@bot.command()
+async def ismin(ctx):
+    await ctx.send(f"Benim ismim Mesajbot.")
+
+@bot.command()
+async def nerelisin(ctx):
+    await ctx.send(f"Ben Discord'a aidim.")
+
+@bot.command()
+async def dinin(ctx):
+    await ctx.send(f"Ben bir yapay zeka olduğum için hergangi bir dinim yok.")
+
+@bot.command()
+async def tesekkür(ctx):
+    await ctx.send(f"Rica ederim her zaman yanındayım bir sorun olduğunda sormaktan çekinme.")
+
+@bot.command()
+async def parola(ctx):
+    await ctx.send(Parola(25))
+
+@bot.command()
+async def offf(ctx):
+    await ctx.send(f"Belki Desen Makinesi sıkıntını giderebilir: https://hub.kodland.org/en/project/284214")
+
+@bot.command()
+async def oyun(ctx):
+    await ctx.send(Oyun())
+
+@bot.command()
+async def emoji(ctx):
+    await ctx.send(Surat())
 
 bot.run("")
+
+# Mantik -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+import random
+
+def Parola(pass_length):
+    karakterler = "é!'£^#+$%½&/=?\*_-@¨¨~~æß´`,;<>.:qQwWeErRtTyYuUIoOpPğĞüÜaAsSdDfFgGhHjJkKlLşŞiİzZxXcCvVbBnNmMöÖçÇ1234567890"
+    sifre = ""
+    for i in range(pass_length):
+        sifre += random.choice(karakterler)
+    return sifre
+
+def Surat():
+    emoji = ["\U0001F923","\U0001f642","\U0001f600","\U0001F606"]
+    return random.choice(emoji)
+
+def Oyun():
+    secim = ["https://hub.kodland.org/en/project/289819","https://hub.kodland.org/en/project/308651","https://hub.kodland.org/en/project/296170"]
+    return random.choice(secim)
+
+# -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
