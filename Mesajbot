@@ -1,0 +1,80 @@
+import discord
+
+import random
+
+from discord.ext import commands
+
+from Mantik import *
+
+intents = discord.Intents.default()
+
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.event
+async def on_ready():
+    print(f"{bot.user} Açıldı.")
+
+@bot.event
+async def on_message(message):
+    cleaned_content = message.content.lower()
+    if message.author == bot.user:
+        return
+    async def merhaba(ctx):
+        await ctx.send("Sanada merhaba.")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def nasilsin(ctx):
+        await ctx.send("iyiyim, sorduğun için teşekkür ederim.")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def adin(ctx):
+        await ctx.send("Benim Adım Mesajbot.")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def ismin(ctx):
+        await ctx.send("Benim ismim Mesajbot.")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def nerelisin(ctx):
+        await ctx.send("Ben Discord'a aidim.")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def dinin(ctx):
+        await ctx.send("Ben bir yapay zeka olduğum için hergangi bir dinim yok.")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def tesekkür(ctx):
+        await ctx.send("Rica ederim her zaman yanındayım bir sorun olduğunda sormaktan çekinme.")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def parola(ctx):
+        await ctx.send(Parola(25))
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def offf(ctx):
+        await ctx.send("Belki Desen Makinesi sıkıntını giderebilir: https://hub.kodland.org/en/project/284214")
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def oyun(ctx):
+        await ctx.send(Oyun())
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+    async def emoji(ctx):
+        await ctx.send(Surat())
+        begenme = random.randint(1,2)
+        if begenme == 1:
+            await message.add_reaction("👍")
+
+bot.run("")
