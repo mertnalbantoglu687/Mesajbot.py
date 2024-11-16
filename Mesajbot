@@ -62,25 +62,6 @@ async def oyun(ctx):
 async def emoji(ctx):
     await ctx.send(Surat())
 
-@bot.command()
-async def resim(ctx):
-    with open("images/mem1.jpg","rb") as f:
-        picture = discord.File(f)
-    await ctx.send(file = picture)
-
-def get_duck_image_url():    
-    url = "https://random-d.uk/api/random"
-    res = requests.get(url)
-    data = res.json()
-    return data["url"]
-
-
-@bot.command("duck")
-async def duck(ctx):
-    """duck komutunu çağırdığımızda,program ordek_resmi_urlsi_al fonksiyonunu çağırır."""
-    image_url = get_duck_image_url()
-    await ctx.send(image_url)
-
 bot.run("")
 
 # Mantik -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
