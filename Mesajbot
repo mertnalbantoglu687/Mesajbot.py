@@ -62,6 +62,12 @@ async def oyun(ctx):
 async def emoji(ctx):
     await ctx.send(Surat())
 
+@bot.command()
+async def resim(ctx):
+    with open("images/mem1.jpg","rb") as f:
+        picture = discord.File(f)
+    await ctx.send(file = picture)
+
 bot.run("")
 
 # Mantik -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
