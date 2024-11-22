@@ -4,15 +4,23 @@ import discord
 
 import random
 
+import time
+
+import requests
+
+import os
+
 from discord.ext import commands
 
-from Mantik import *
+from Mantık import *
 
 intents = discord.Intents.default()
 
 intents.message_content = True
 
 bot = commands.Bot(command_prefix = "$",intents = intents)
+
+print(os.listdir("Resimler"))
 
 @bot.event
 async def on_ready():
@@ -61,6 +69,60 @@ async def oyun(ctx):
 @bot.command()
 async def emoji(ctx):
     await ctx.send(Surat())
+
+@bot.command()
+async def resim(ctx):
+    with open("Resimler/Resim1.png","rb") as f:
+        picture = discord.File(f)
+    await ctx.send(file = picture)
+
+@bot.command("ördek")
+async def ördek(ctx):
+    image_url = Ördek()
+    await ctx.send(image_url)
+
+@bot.command("köpek")
+async def köpek(ctx):
+    image_url = Köpek()
+    await ctx.send(image_url)
+
+@bot.command()
+async def basla(ctx):
+    soru = await ctx.send(f"Yazımı turamı?")
+    def Cevap(mesaj):
+        return mesaj.author == ctx.author and mesaj.channel == ctx.channel
+    cevap_mesajı = await bot.wait_for("message", check = Cevap)
+    cevap = cevap_mesajı.content.lower()
+    secim = random.randint(1,2)
+    if cevap == "$yazı" or cevap == "$tura":
+        await ctx.send(f"Parayı atıyorum.")
+        time.sleep(3)
+        await ctx.send(f"Attım.")
+        time.sleep(1)
+    if secim == 1:
+        if cevap == "$yazı" or cevap == "$tura":
+            with open("Resimler/Resim4.png","rb") as f:
+                picture = discord.File(f)
+            await ctx.send(file = picture)
+        if cevap == "$yazı":
+            await ctx.send(f"Doğru bildin.")
+        elif cevap == "$tura":
+            await ctx.send(f"Yanlış bildin.")
+        else:
+            if cevap.strip():
+                await ctx.send(f"Böyle bir seçenek yok.")
+    elif secim == 2:
+        if cevap == "$yazı" or cevap == "$tura":
+            with open("Resimler/Resim5.png","rb") as f:
+                picture = discord.File(f)
+            await ctx.send(file = picture)
+        if cevap == "$yazı":
+            await ctx.send(f"Yanlış bildin.")
+        elif cevap == "$tura":
+            await ctx.send(f"Doğru bildin.")
+        else:
+            if cevap.strip():
+                await ctx.send(f"Böyle bir seçenek yok.")
 
 bot.run("")
 
