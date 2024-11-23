@@ -12,6 +12,8 @@ import os
 
 from discord.ext import commands
 
+from discord.ui import Button, View
+
 from Mantık import *
 
 intents = discord.Intents.default()
@@ -21,6 +23,134 @@ intents.message_content = True
 bot = commands.Bot(command_prefix = "$",intents = intents)
 
 print(os.listdir("Resimler"))
+
+diller = {
+    "English": "en",
+    "Türkçe": "tr",
+    "Français": "fr",
+    "Español": "es",
+    "Deutsch": "de",
+    "Italiano": "it",
+    "Português": "pt",
+    "Nederlands": "nl",
+    "Русский": "ru",
+    "日本語": "ja",
+    "한국어": "ko",
+    "中文": "zh",
+    "عربى": "ar",
+    "हिन्दी": "hi",
+    "বাংলা": "bn",
+    "ภาษาไทย": "th",
+    "Polski": "pl",
+    "Українська": "uk",
+    "Tiếng Việt": "vi",
+    "Sveta": "sv",
+    "Română": "ro",
+    "Türkçe (Kıbrıs)": "cy",
+    "Ελληνικά": "el",
+    "Čeština": "cs",
+    "Hrvatski": "hr",
+    "Srpski": "sr",
+    "Slovenčina": "sk",
+    "Slovenščina": "sl",
+    "Български": "bg",
+    "Македонски": "mk",
+    "Lietuvių": "lt",
+    "Latviešu": "lv",
+    "Eesti": "et",
+    "Māori": "mi",
+    "Afrikaans": "af",
+    "Bahasa Indonesia": "id",
+    "Filipino": "tl",
+    "Nepali": "ne",
+    "Sinhala": "si",
+    "Khmer": "km",
+    "Burmese": "my",
+    "Georgian": "ka",
+    "Armenian": "hy",
+    "Hebrew": "he",
+    "Yiddish": "yi",
+    "Farsi": "fa",
+    "Pashto": "ps",
+    "Urdu": "ur",
+    "Punjabi": "pa",
+    "Tamil": "ta",
+    "Telugu": "te",
+    "Kannada": "kn",
+    "Malayalam": "ml",
+    "Marathi": "mr",
+    "Gujarati": "gu",
+    "Bhojpuri": "bho",
+    "Assamese": "as",
+    "Maithili": "mai",
+    "Odia": "or",
+    "Māori": "mi",
+    "Tigrinya": "ti",
+    "Somali": "so",
+    "Kinyarwanda": "rw",
+    "Luganda": "lg",
+    "Amharic": "am",
+    "Swahili": "sw",
+    "Xhosa": "xh",
+    "Zulu": "zu",
+    "Quechua": "qu",
+    "Aymara": "ay",
+    "Guaraní": "gn",
+    "Haitian Creole": "ht",
+    "Jamaican Patois": "jm",
+    "Bislama": "bi",
+    "Tok Pisin": "tpi",
+    "Fijian": "fj",
+    "Samoan": "sm",
+    "Tongan": "to",
+    "Māori": "mi",
+    "Hmong": "hmn",
+    "Twi": "tw",
+    "Igbo": "ig",
+    "Yoruba": "yo",
+    "Hausa": "ha",
+    "Zaza": "zza",
+    "Kurdish (Kurmanji)": "ku",
+    "Bashkir": "ba",
+    "Kazakh": "kk",
+    "Uzbek": "uz",
+    "Kyrgyz": "ky",
+    "Mongolian": "mn",
+    "Tatar": "tt",
+    "Turkmen": "tk",
+    "Azerbaijani": "az",
+    "Albanian": "sq",
+    "Bosnian": "bs",
+    "Croatian": "hr",
+    "Montenegrin": "me",
+    "Macedonian": "mk",
+    "Serbian": "sr",
+    "Slovak": "sk",
+    "Slovenian": "sl",
+    "Latvian": "lv",
+    "Lithuanian": "lt",
+    "Estonian": "et",
+    "Belarusian": "be",
+    "Icelandic": "is"
+}
+
+class Dil_Secim_Ekranı(View):
+    def __init__(self):
+        super().__init__(timeout = None)
+        for language_name, language_code in languages.items():
+            button = Button(label=language_name, custom_id=language_code)
+            button.callback = self.language_selected
+            self.add_item(button)
+    async def Dil_Secimi(self, interaction: discord.Interaction):
+        selected_language = interaction.data["custom_id"]
+        await interaction.response.send_message(f"Seçilen dil: {selected_language}", ephemeral = True)
+        self.stop()
+@bot.event
+async def on_ready():
+    print(f"Bot {bot.user} olarak giriş yaptı!")
+    channel = bot.get_channel(1304839472696787016)
+    view = LanguageSelection()
+    await channel.send("Lütfen dil seçiniz:", view = view)
 
 @bot.event
 async def on_ready():
