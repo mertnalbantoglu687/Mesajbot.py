@@ -137,8 +137,8 @@ diller = {
 class Dil_Secim_Ekranı(View):
     def __init__(self):
         super().__init__(timeout = None)
-        for language_name, language_code in languages.items():
-            button = Button(label=language_name, custom_id=language_code)
+        for language_name,language_code in languages.items():
+            button = Button(label=language_name, custom_id = language_code)
             button.callback = self.language_selected
             self.add_item(button)
     async def Dil_Secimi(self, interaction: discord.Interaction):
