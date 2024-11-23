@@ -147,7 +147,6 @@ class Dil_Secim_Ekranı(View):
         self.stop()
 @bot.event
 async def on_ready():
-    print(f"Bot {bot.user} olarak giriş yaptı!")
     channel = bot.get_channel(1304839472696787016)
     view = LanguageSelection()
     await channel.send("Lütfen dil seçiniz:", view = view)
