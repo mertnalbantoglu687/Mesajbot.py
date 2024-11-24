@@ -12,8 +12,6 @@ import os
 
 from discord.ext import commands
 
-from discord.ui import Button, View
-
 from Mantık import *
 
 intents = discord.Intents.default()
@@ -23,133 +21,6 @@ intents.message_content = True
 bot = commands.Bot(command_prefix = "$",intents = intents)
 
 print(os.listdir("Resimler"))
-
-diller = {
-    "English": "en",
-    "Türkçe": "tr",
-    "Français": "fr",
-    "Español": "es",
-    "Deutsch": "de",
-    "Italiano": "it",
-    "Português": "pt",
-    "Nederlands": "nl",
-    "Русский": "ru",
-    "日本語": "ja",
-    "한국어": "ko",
-    "中文": "zh",
-    "عربى": "ar",
-    "हिन्दी": "hi",
-    "বাংলা": "bn",
-    "ภาษาไทย": "th",
-    "Polski": "pl",
-    "Українська": "uk",
-    "Tiếng Việt": "vi",
-    "Sveta": "sv",
-    "Română": "ro",
-    "Türkçe (Kıbrıs)": "cy",
-    "Ελληνικά": "el",
-    "Čeština": "cs",
-    "Hrvatski": "hr",
-    "Srpski": "sr",
-    "Slovenčina": "sk",
-    "Slovenščina": "sl",
-    "Български": "bg",
-    "Македонски": "mk",
-    "Lietuvių": "lt",
-    "Latviešu": "lv",
-    "Eesti": "et",
-    "Māori": "mi",
-    "Afrikaans": "af",
-    "Bahasa Indonesia": "id",
-    "Filipino": "tl",
-    "Nepali": "ne",
-    "Sinhala": "si",
-    "Khmer": "km",
-    "Burmese": "my",
-    "Georgian": "ka",
-    "Armenian": "hy",
-    "Hebrew": "he",
-    "Yiddish": "yi",
-    "Farsi": "fa",
-    "Pashto": "ps",
-    "Urdu": "ur",
-    "Punjabi": "pa",
-    "Tamil": "ta",
-    "Telugu": "te",
-    "Kannada": "kn",
-    "Malayalam": "ml",
-    "Marathi": "mr",
-    "Gujarati": "gu",
-    "Bhojpuri": "bho",
-    "Assamese": "as",
-    "Maithili": "mai",
-    "Odia": "or",
-    "Māori": "mi",
-    "Tigrinya": "ti",
-    "Somali": "so",
-    "Kinyarwanda": "rw",
-    "Luganda": "lg",
-    "Amharic": "am",
-    "Swahili": "sw",
-    "Xhosa": "xh",
-    "Zulu": "zu",
-    "Quechua": "qu",
-    "Aymara": "ay",
-    "Guaraní": "gn",
-    "Haitian Creole": "ht",
-    "Jamaican Patois": "jm",
-    "Bislama": "bi",
-    "Tok Pisin": "tpi",
-    "Fijian": "fj",
-    "Samoan": "sm",
-    "Tongan": "to",
-    "Māori": "mi",
-    "Hmong": "hmn",
-    "Twi": "tw",
-    "Igbo": "ig",
-    "Yoruba": "yo",
-    "Hausa": "ha",
-    "Zaza": "zza",
-    "Kurdish (Kurmanji)": "ku",
-    "Bashkir": "ba",
-    "Kazakh": "kk",
-    "Uzbek": "uz",
-    "Kyrgyz": "ky",
-    "Mongolian": "mn",
-    "Tatar": "tt",
-    "Turkmen": "tk",
-    "Azerbaijani": "az",
-    "Albanian": "sq",
-    "Bosnian": "bs",
-    "Croatian": "hr",
-    "Montenegrin": "me",
-    "Macedonian": "mk",
-    "Serbian": "sr",
-    "Slovak": "sk",
-    "Slovenian": "sl",
-    "Latvian": "lv",
-    "Lithuanian": "lt",
-    "Estonian": "et",
-    "Belarusian": "be",
-    "Icelandic": "is"
-}
-
-class Dil_Secim_Ekranı(View):
-    def __init__(self):
-        super().__init__(timeout = None)
-        for language_name,language_code in languages.items():
-            button = Button(label=language_name, custom_id = language_code)
-            button.callback = self.language_selected
-            self.add_item(button)
-    async def Dil_Secimi(self, interaction: discord.Interaction):
-        selected_language = interaction.data["custom_id"]
-        await interaction.response.send_message(f"Seçilen dil: {selected_language}", ephemeral = True)
-        self.stop()
-@bot.event
-async def on_ready():
-    channel = bot.get_channel(1304839472696787016)
-    view = LanguageSelection()
-    await channel.send("Lütfen dil seçiniz:", view = view)
 
 @bot.event
 async def on_ready():
@@ -188,6 +59,31 @@ async def parola(ctx):
     await ctx.send(Parola(25))
 
 @bot.command()
+async def kurallar(ctx):
+    await ctx.send(f"ÇEVRE KİRLİLİĞİNİ AZALTMA KURALLARI\n\n"
+    "1. Çöplerini yere değil çöp kutusuna atabilirsin.\n\n"
+    "2. Geri dönüştürülebilen maddeleri çöp kutusuna değil geri dönüşüm kutusuna atabilirsin.\n\n"
+    "3. En ufak tasarruftan bile kaçınmamalısın. örneğin(ellerini yıkarken suyu az açabilir\n"
+    "veya gündüzleri ışıkları kapatabilirsin).\n\n"
+    "4. Hava kirliliğini azaltmak amacıyla elektrikli araçlara geçiş yapabilir toplu taşıma\n"
+    "araçlarını daha sık kullanmaya özen gösterebilir, bisiklet gibi çevre dostu araçlar kullanabilir\n"
+    "veya yenilenebilir enerji kaynaklarına örneğin(güneş, rüzgar, hidroelektrik) gibi kaynaklara\n"
+    "yatırım yapabilirsin.\n\n"
+    "5. Eğer bitki yetiştiriyorsan doğal gübreler ve kompost kullanarak toprak kirliliğini önleyebilir\n"
+    "ve verimliliği arttırabilirsin.\n\n"
+    "6. Gürültü kirliliğini azaltmak için araç egzoz sistemlerini düzenleyerek\n"
+    "veya gürültü seviyesi düşük makineler ve ekipmanlar kullanarak ses kirliliği\n"
+    "sınırlarına uyabilirsin.\n\n"
+    "7. Enerji tasarrufu yapmak için yenilenebilir enerji projelerini destekleyebilir veya böyle\n"
+    "projeler düzenleyebilirsiniz.\n\n"
+    "8. Toprak kirliliğini azaltmak için tek kullanımlık plastik gibi atıkları\n"
+    "kullanmayabilir veya daha az kullanmaya çalışabilirsin.\n\n"
+    "9. Heyelan(toprak kayması) gibi doğal afetleri önlemek ve yaşam verimliliğini arttırmak amacıyla etrafı\n"
+    "ağaçlandırarak yeşil alanları arttırabilirsin.\n\n"
+    "10. Bunlar ve diğer çevre kirliliğini azaltma kurallarını başkalarıyla paylaşarak\n"
+    "etrafındakileri bilinçlendirebilir ve çevreyle uyum içerisinde yaşamalarını sağlayabilirsin.")
+
+@bot.command()
 async def offf(ctx):
     await ctx.send(f"Belki Desen Makinesi sıkıntını giderebilir: https://hub.kodland.org/en/project/284214")
 
@@ -198,12 +94,6 @@ async def oyun(ctx):
 @bot.command()
 async def emoji(ctx):
     await ctx.send(Surat())
-
-@bot.command()
-async def resim(ctx):
-    with open("Resimler/Resim1.png","rb") as f:
-        picture = discord.File(f)
-    await ctx.send(file = picture)
 
 @bot.command("ördek")
 async def ördek(ctx):
@@ -230,25 +120,25 @@ async def basla(ctx):
         time.sleep(1)
     if secim == 1:
         if cevap == "$yazı" or cevap == "$tura":
-            with open("Resimler/Resim4.png","rb") as f:
+            with open("Resimler/Resim1.png","rb") as f:
                 picture = discord.File(f)
             await ctx.send(file = picture)
         if cevap == "$yazı":
-            await ctx.send(f"Doğru bildin.")
-        elif cevap == "$tura":
             await ctx.send(f"Yanlış bildin.")
+        elif cevap == "$tura":
+            await ctx.send(f"Doğru bildin.")
         else:
             if cevap.strip():
                 await ctx.send(f"Böyle bir seçenek yok.")
     elif secim == 2:
         if cevap == "$yazı" or cevap == "$tura":
-            with open("Resimler/Resim5.png","rb") as f:
+            with open("Resimler/Resim2.png","rb") as f:
                 picture = discord.File(f)
             await ctx.send(file = picture)
         if cevap == "$yazı":
-            await ctx.send(f"Yanlış bildin.")
-        elif cevap == "$tura":
             await ctx.send(f"Doğru bildin.")
+        elif cevap == "$tura":
+            await ctx.send(f"Yanlış bildin.")
         else:
             if cevap.strip():
                 await ctx.send(f"Böyle bir seçenek yok.")
