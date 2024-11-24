@@ -2,11 +2,11 @@
 
 import discord
 
+import requests
+
 import random
 
 import time
-
-import requests
 
 import os
 
@@ -147,6 +147,10 @@ bot.run("")
 
 # Mantık -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+import discord
+
+import requests
+
 import random
 
 def Parola(pass_length):
@@ -164,4 +168,15 @@ def Oyun():
     secim = ["https://hub.kodland.org/en/project/289819","https://hub.kodland.org/en/project/308651","https://hub.kodland.org/en/project/296170"]
     return random.choice(secim)
 
+def Ördek():    
+    url = "https://random-d.uk/api/random"
+    res = requests.get(url)
+    data = res.json()
+    return data["url"]
+
+def Köpek():    
+    url = "https://random.dog/woof.json"
+    res = requests.get(url)
+    data = res.json()
+    return data["url"]
 # -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
