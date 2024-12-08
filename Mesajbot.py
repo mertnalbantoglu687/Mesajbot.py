@@ -156,7 +156,7 @@ import random
 def Parola(pass_length):
     karakterler = "é!'£^#+$%½&/=?\*_-@¨¨~~æß´`,;<>.:qQwWeErRtTyYuUIoOpPğĞüÜaAsSdDfFgGhHjJkKlLşŞiİzZxXcCvVbBnNmMöÖçÇ1234567890"
     sifre = ""
-    for i in range(pass_length):
+    for a in range(pass_length):
         sifre += random.choice(karakterler)
     return sifre
 
