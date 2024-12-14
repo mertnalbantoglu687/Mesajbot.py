@@ -60,7 +60,7 @@ async def parola(ctx):
 
 @bot.command()
 async def kurallar(ctx):
-    await ctx.send(f"ÇEVRE KİRLİLİĞİNİ AZALTMA KURALLARI\n\n"
+    await ctx.send(f"PARLAK BİR GELECEK İÇİN YAPABİLECEKLERİNİZ\n\n"
     "1. Çöplerini yere değil çöp kutusuna atabilirsin.\n\n"
     "2. Geri dönüştürülebilen maddeleri çöp kutusuna değil geri dönüşüm kutusuna atabilirsin.\n\n"
     "3. En ufak tasarruftan bile kaçınmamalısın. örneğin(ellerini yıkarken suyu az açabilir\n"
